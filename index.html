@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>above</title>
+    <script src="libraries/p5.js" type="text/javascript"></script>
+
+    <script src="libraries/p5.dom.js" type="text/javascript"></script>
+    <script src="libraries/p5.sound.js" type="text/javascript"></script>
+    <script src="libraries/p5.speech.js" type="text/javascript"></script>
+    <script src="sketch.js" type="text/javascript"></script>
+	<script>
+		window.addEventListener("deviceorientation",handleOrientation,true);
+		function handleOrientation(event) {
+ 	 		var absolute = event.absolute;
+  			var alpha    = event.alpha;
+  			var beta     = event.beta;
+			var gamma    = event.gamma;
+		}
+		window.addEventListener('devicemotion', function(event) {
+ 			 console.log(event.acceleration.x + ' m/s2');
+			});
+
+	</script>
+    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
+  </head>
+  <body>
+  </body>
+</html>
