@@ -8,7 +8,24 @@ let system;
 let camTarget;
 function preload(){
 	myFont = loadFont ('assets/sans.otf');
-	
+
+}
+window.addEventListener('deviceorientation', (event) => {
+	// Expose each orientation angle in a more readable way
+	rotation_degrees = event.alpha;
+	frontToBack_degrees = event.beta;
+	leftToRight_degrees = event.gamma;
+
+	// Update velocity according to how tilted the phone is
+	// Since phones are narrower than they are long, double the increase to the x velocity
+	//vx = vx + leftToRight_degrees * updateRate * 2;
+	//vy = vy + frontToBack_degrees * updateRate;
+
+
+	//dot = document.getElementsByClassName("indicatorDot")[0]
+	//dot.setAttribute('style', "left:" + (px) + "%;" +
+	//	"top:" + (py) + "%;");
+
 }
 function setup() {
 	const canvasElt = createCanvas(400,600,WEBGL).elt;
@@ -20,7 +37,7 @@ function setup() {
 	textFont(myFont);
 	//system = new ParticleSystem(createVector(0,5,10));
 	//system = new particle
-	
+
 	camTarget=createVector(0,0,0);
 }
 
@@ -43,7 +60,7 @@ function draw() {
 	camera(0, 0, 0, camX, camY,camZ, 0, 1, 0);
 
 	//system.show();
-	push();	
+	push();
 	translate(0,5,5);
 	textSize(12);
 	fill(255);
@@ -57,9 +74,9 @@ function draw() {
 	textureMode(NORMAL);
 	noStroke();
 	translate(500,0);
-	sphere(1000); 
+	sphere(1000);
 
-	//shakeCheck();  
+	//shakeCheck();
 }
 
 
