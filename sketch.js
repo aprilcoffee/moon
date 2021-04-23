@@ -53,8 +53,9 @@ function draw() {
 	let camY = fixR * sin(radians(angle_t));
 	let camZ = fixR * sin(radians(angle_a)) * cos(radians(angle_t));
 	camTarget = createVector(camX, camY, camZ);
-	camera(0, 0, 0, camX, camY, camZ, 0, 1, 0);
 
+
+	camera(0, 0, (height / 2.0) / tan(PI * 30.0 / 180.0), 0, 0, 0, 0, 1, 0);
 	//system.show();
 	push();
 	translate(0, 5, 5);
@@ -63,9 +64,9 @@ function draw() {
 	text(pRotationX, 0, -10);
 	text(pRotationY, 0, 0);
 	text(pRotationZ, 0, 10);
-
 	pop();
 
+	camera(0, 0, 0, camX, camY, camZ, 0, 1, 0);
 	texture(backGroundColorGradient);
 	textureMode(NORMAL);
 	noStroke();
