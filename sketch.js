@@ -22,7 +22,6 @@ function onOrientationChange(e) {
 }
 
 function setup() {
-	intervalCurrentPosition(positionPing, 5000)
 	const canvasElt = createCanvas(600, 800, WEBGL).elt;
 	canvasElt.style.width = '100%', canvasElt.style.height = '100%';
 	//	createCanvas(displayWidth, displayHeight, WEBGL);
