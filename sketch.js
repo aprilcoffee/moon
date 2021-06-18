@@ -7,11 +7,11 @@ let system;
 
 let camTarget;
 
-var locationData
 
-var latitude
-var longitude
-var altitude
+var latitude = " ";
+var longitude= " ";
+var altitude = " ";
+
 function preload() {
 	myFont = loadFont('assets/sans.otf');
 }
@@ -38,29 +38,25 @@ function setup() {
 	//system = new ParticleSystem(createVector(0,5,10));
 	//system = new particle
 	camTarget = createVector(0, 0, 0);
+
+	if (!navigator.geolocation) {
+		alert("navigator.geolocation is not available");
+	}
+	navigator.geolocation.getCurrentPosition(setPos);
 }
 
-function success(pos) {
-  locationData = pos.coords;
 
-	latitude = locationData.latitude
-	longitude = locationData.longitude
-	altitude = locationData.altitude
+
+function setPos(position) {
+	latitude = position.coords.latitude;
+	longitude = position.coords.longitude;
+	altitude = position.coords.altitude;
 }
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
-
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-
 
 function draw() {
+	navigator.geolocation.getCurrentPosition(setPos);
+
 	background(0);
-	navigator.geolocation.getCurrentPosition(success, error, options);
 
 	//fill(255);
 	//text('p5*js', 10, 50);
@@ -83,12 +79,12 @@ function draw() {
 	translate(0, 5, 5);
 	textSize(12);
 	fill(255);
-	text("Latitude: "+latitude,0,-40)
-	text("Longitude: "+longitude,0,-30)
-	text("Altitude: "+altitude,0,-20)
-	text("RotationX: "+pRotationX, 0, 0);
-	text("RotationY: "+pRotationY, 0, 10);
-	text("RotationZ: "+pRotationZ, 0, 20);
+	text("Latitude: " + latitude, 0, -40)
+	text("Longitude: " + longitude, 0, -30)
+	text("Altitude: " + altitude, 0, -20)
+	text("RotationX: " + pRotationX, 0, 0);
+	text("RotationY: " + pRotationY, 0, 10);
+	text("RotationZ: " + pRotationZ, 0, 20);
 	pop();
 
 	camera(0, 0, 0, camX, camY, camZ, 0, 1, 0);
