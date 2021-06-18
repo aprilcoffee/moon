@@ -9,6 +9,9 @@ let camTarget;
 
 var locationData
 
+var latitude
+var longitude
+var altitude
 function preload() {
 	myFont = loadFont('assets/sans.otf');
 }
@@ -38,7 +41,11 @@ function setup() {
 }
 
 function success(pos) {
-  locationData = pos.coords;s
+  locationData = pos.coords;
+
+	latitude = locationData.latitude
+	longitude = locationData.longitude
+	altitude = locationData.altitude
 }
 var options = {
   enableHighAccuracy: true,
