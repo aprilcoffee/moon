@@ -11,7 +11,6 @@ var locationData
 
 function preload() {
 	myFont = loadFont('assets/sans.otf');
-	locationData = getCurrentPosition();
 }
 
 function onOrientationChange(e) {
@@ -34,18 +33,29 @@ function setup() {
 	if (window.DeviceOrientationEvent) {
 		window.addEventListener('deviceorientation', onOrientationChange);
 	}
-
 	//system = new ParticleSystem(createVector(0,5,10));
 	//system = new particle
-
 	camTarget = createVector(0, 0, 0);
 }
 
-function positionPing(position){
-    locationData = position()
+function success(pos) {
+  locationData = pos.coords;s
 }
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+
 function draw() {
 	background(0);
+	navigator.geolocation.getCurrentPosition(success, error, options);
+
 	//fill(255);
 	//text('p5*js', 10, 50);
 
