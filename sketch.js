@@ -83,9 +83,9 @@ function draw() {
 	translate(0, 5, 5);
 	textSize(12);
 	fill(255);
-	text("Latitude: "+locationData.latitude)
-	text("Longitude: "+locationData.longitude)
-	text("Altitude: "+locationData.altitude)
+	text("Latitude: "+latitude)
+	text("Longitude: "+longitude)
+	text("Altitude: "+altitude)
 	text("RotationX: "+pRotationX, 0, -10);
 	text("RotationY: "+pRotationY, 0, 0);
 	text("RotationZ: "+pRotationZ, 0, 10);
