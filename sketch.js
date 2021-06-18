@@ -7,8 +7,11 @@ let system;
 
 let camTarget;
 
+var locationData
+
 function preload() {
 	myFont = loadFont('assets/sans.otf');
+	locationData = getCurrentPosition();
 }
 
 function onOrientationChange(e) {
@@ -19,9 +22,9 @@ function onOrientationChange(e) {
 	println(alpha + " " + beta + " " + gamma);
 }
 
-
 function setup() {
-	const canvasElt = createCanvas(400, 600, WEBGL).elt;
+	intervalCurrentPosition(positionPing, 5000)
+	const canvasElt = createCanvas(600, 800, WEBGL).elt;
 	canvasElt.style.width = '100%', canvasElt.style.height = '100%';
 	//	createCanvas(displayWidth, displayHeight, WEBGL);
 	backGroundColorTop = loadImage("img/oceanAbove.jpg");
@@ -31,12 +34,16 @@ function setup() {
 	if (window.DeviceOrientationEvent) {
 		window.addEventListener('deviceorientation', onOrientationChange);
 	}
+
 	//system = new ParticleSystem(createVector(0,5,10));
 	//system = new particle
 
 	camTarget = createVector(0, 0, 0);
 }
 
+function positionPing(position){
+    locationData = position()
+}
 function draw() {
 	background(0);
 	//fill(255);
@@ -54,25 +61,27 @@ function draw() {
 	let camZ = fixR * sin(radians(angle_a)) * cos(radians(angle_t));
 	camTarget = createVector(camX, camY, camZ);
 
-
 	camera(0, 0, (height / 2.0) / tan(PI * 30.0 / 180.0), 0, 0, 0, 0, 1, 0);
 	//system.show();
 	push();
 	translate(0, 5, 5);
 	textSize(12);
 	fill(255);
-	text(pRotationX, 0, -10);
-	text(pRotationY, 0, 0);
-	text(pRotationZ, 0, 10);
+	text("Latitude: "+locationData.latitude)
+	text("Longitude: "+locationData.longitude)
+	text("Altitude: "+locationData.altitude)
+	text("RotationX: "+pRotationX, 0, -10);
+	text("RotationY: "+pRotationY, 0, 0);
+	text("RotationZ: "+pRotationZ, 0, 10);
 	pop();
 
 	camera(0, 0, 0, camX, camY, camZ, 0, 1, 0);
-	texture(backGroundColorGradient);
+	//texture(backGroundColorGradient);
 	textureMode(NORMAL);
-	noStroke();
+	stroke(255);
+	noFill()
 	translate(500, 0);
 	sphere(1000);
-
 	//shakeCheck();
 }
 
