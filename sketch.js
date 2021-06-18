@@ -83,12 +83,12 @@ function draw() {
 	translate(0, 5, 5);
 	textSize(12);
 	fill(255);
-	text("Latitude: "+latitude)
-	text("Longitude: "+longitude)
-	text("Altitude: "+altitude)
-	text("RotationX: "+pRotationX, 0, -10);
-	text("RotationY: "+pRotationY, 0, 0);
-	text("RotationZ: "+pRotationZ, 0, 10);
+	text("Latitude: "+latitude,0,-40)
+	text("Longitude: "+longitude,0,-30)
+	text("Altitude: "+altitude,0,-20)
+	text("RotationX: "+pRotationX, 0, 0);
+	text("RotationY: "+pRotationY, 0, 10);
+	text("RotationZ: "+pRotationZ, 0, 20);
 	pop();
 
 	camera(0, 0, 0, camX, camY, camZ, 0, 1, 0);
